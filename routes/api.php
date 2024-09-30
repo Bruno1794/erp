@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //Routas de Usuarios
     Route::post('user-create', [UserController::class, 'store']);
     Route::put('user-edit/{user}', [UserController::class, 'update']);
+    Route::put('user-password/{user}', [UserController::class, 'updatePassoword']);
+    Route::get('user-profile', [UserController::class, 'showProfile']);
+    Route::get('users', [UserController::class, 'show']);
+    Route::delete('user-delete/{user}', [UserController::class, 'destroy']);
 
     /*FIM*/
     ###Fim

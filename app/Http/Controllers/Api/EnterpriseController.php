@@ -200,7 +200,7 @@ class EnterpriseController extends Controller
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Falha ao remover Empresa!'
+                    'message' => 'Usuario sem permisao!'
                 ]);
             }
         } catch (\Exception $exception) {

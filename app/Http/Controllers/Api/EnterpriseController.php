@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EnterpriseRequest;
+use App\Http\Requests\EnterpriseValidateRequest;
 use App\Models\Enterprise;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -41,9 +43,10 @@ class EnterpriseController extends Controller
         }
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(EnterpriseRequest $request): JsonResponse
     {
         DB::beginTransaction();
+
         try {
             $enterprise = Enterprise::create([
                 'name_enterprise' => $request->name_enterprise,
@@ -80,7 +83,7 @@ class EnterpriseController extends Controller
         }
     }
 
-    public function update(Request $request, Enterprise $enterprise): JsonResponse
+    public function update(EnterpriseRequest $request, Enterprise $enterprise): JsonResponse
     {
         DB::beginTransaction();
         try {
@@ -117,7 +120,7 @@ class EnterpriseController extends Controller
         }
     }
 
-    public function updateSuper(Request $request, Enterprise $enterprise): JsonResponse
+    public function updateSuper(EnterpriseRequest $request, Enterprise $enterprise): JsonResponse
     {
         DB::beginTransaction();
         try {
@@ -154,7 +157,7 @@ class EnterpriseController extends Controller
         }
     }
 
-    public function updateValidate(Request $request, Enterprise $enterprise): JsonResponse
+    public function updateValidate(EnterpriseValidateRequest $request, Enterprise $enterprise): JsonResponse
     {
         DB::beginTransaction();
         try {

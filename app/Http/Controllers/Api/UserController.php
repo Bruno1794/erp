@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserAlterRequest;
+use App\Http\Requests\UserPasswordRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\Enterprise;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -14,7 +17,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function store(Request $request): JsonResponse
+    public function store(UserRequest $request): JsonResponse
     {
         $userLogado = Auth::user();
         DB::beginTransaction();
@@ -68,7 +71,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function update(Request $request, User $user): JsonResponse
+    public function update(UserAlterRequest $request, User $user): JsonResponse
     {
         DB::beginTransaction();
         $userLogado = Auth::user();
@@ -99,7 +102,7 @@ class UserController extends Controller
         }
     }
 
-    public function updatePassoword(Request $request, User $user): JsonResponse
+    public function updatePassoword(UserPasswordRequest $request, User $user): JsonResponse
     {
         DB::beginTransaction();
         $userLogado = Auth::user();

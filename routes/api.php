@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\EnterpriseController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,8 +64,16 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('category/{category}', [CategoryController::class, 'showCategory']);
     Route::put('category-edit/{category}', [CategoryController::class, 'update']);
     Route::put('inactive-category/{category}', [CategoryController::class, 'updateInactive']);
-
     Route::post('category-create', [CategoryController::class, 'store']);
     ##FIM
+
+    ## Rota de Unidade de Medidas
+    Route::get('units', [UnitController::class, 'show']);
+    Route::get('unit/{unit}', [UnitController::class, 'showUnit']);
+    Route::get('units-inative', [UnitController::class, 'showInative']);
+    Route::post('unit-create', [UnitController::class, 'store']);
+    Route::put('unit-edit/{unit}', [UnitController::class, 'update']);
+    Route::put('unit-edit-status/{unit}', [UnitController::class, 'updateStatus']);
+    ##
 });
 

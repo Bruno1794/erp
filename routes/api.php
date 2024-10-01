@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\EnterpriseController;
 use App\Http\Controllers\Api\LoginController;
@@ -55,5 +56,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('client-edit/{client}', [ClientController::class, 'update']);
     Route::put('client-status/{client}', [ClientController::class, 'updateStatus']);
     ##Fim
+
+    ## Rota de categorias
+    Route::get('categories', [CategoryController::class, 'show']);
+    Route::get('categories-inactive', [CategoryController::class, 'showInctive']);
+    Route::get('category/{category}', [CategoryController::class, 'showCategory']);
+    Route::put('category-edit/{category}', [CategoryController::class, 'update']);
+    Route::put('inactive-category/{category}', [CategoryController::class, 'updateInactive']);
+
+    Route::post('category-create', [CategoryController::class, 'store']);
+    ##FIM
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
 class ClientRequest extends FormRequest
 {
@@ -32,12 +33,14 @@ class ClientRequest extends FormRequest
     public function rules(): array
     {
         $clientId = $this->route('client');
+        $userLogado = Auth::user();
         return [
             'nome_client' => 'required',
             'fone_client' => 'required',
             'type_client' => 'required',
             'type_partner' => 'required',
-            'cpf_cnpj_client' => 'required|unique:clients,cpf_cnpj_client,'. ($clientId ? $clientId->id : null),
+            'cpf_cnpj_client' => 'required|unique:clients,cpf_cnpj_client, ,id,enterprise_id, '.$userLogado->enterprise_id
+            /*required_if:password,!=,null*/
 
         ];
     }
@@ -51,7 +54,8 @@ class ClientRequest extends FormRequest
             'type_client.required' => 'Campo tipo é obrigatorio',
             'type_partner.required' => 'Campo tipo de pareciro é obrigatorio',
             'cpf_cnpj_client.required' => 'Campo CPF/CNPJ é obrigatorio',
-            'cpf_cnpj_client.unique' => 'CPF/CNPJ já em uso',
+            'cpf_cnpj_client.unique' => 'CPF/CNPJ já cadastrado',
+
         ];
     }
 }

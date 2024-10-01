@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\EnterpriseController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\UserController;
+use Illuminate\Support\Facades\Route;
 
 
 /*Routas de Login*/
@@ -40,9 +40,20 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('user-password/{user}', [UserController::class, 'updatePassoword']);
     Route::get('user-profile', [UserController::class, 'showProfile']);
     Route::get('users', [UserController::class, 'show']);
+    Route::get('user/{user}', [UserController::class, 'showUser']);
     Route::delete('user-delete/{user}', [UserController::class, 'destroy']);
 
     /*FIM*/
     ###Fim
+
+    ## Rotas de clientes
+    Route::get('clients', [ClientController::class, 'show']);
+    Route::get('providers', [ClientController::class, 'showProviders']);
+    Route::get('inactive', [ClientController::class, 'showInactive']);
+    Route::get('clients/{client}', [ClientController::class, 'showClient']);
+    Route::post('client-create', [ClientController::class, 'store']);
+    Route::put('client-edit/{client}', [ClientController::class, 'update']);
+    Route::put('client-status/{client}', [ClientController::class, 'updateStatus']);
+    ##Fim
 });
 

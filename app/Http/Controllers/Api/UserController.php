@@ -71,6 +71,24 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function showUser(User $user): JsonResponse
+    {
+        $userLogado = Auth::user();
+
+        if ($userLogado->enterprise_id === $user->enterprise_id) {
+            $user = User::where('id', $user->id)->first();
+            return response()->json([
+                'success' => true,
+                'user' => $user,
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => "Usuario nao encontrado"
+            ], 400);
+        }
+    }
+
     public function update(UserAlterRequest $request, User $user): JsonResponse
     {
         DB::beginTransaction();

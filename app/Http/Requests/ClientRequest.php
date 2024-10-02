@@ -33,13 +33,16 @@ class ClientRequest extends FormRequest
     public function rules(): array
     {
         $clientId = $this->route('client');
+       // dd($clientId);
         $userLogado = Auth::user();
+
         return [
             'nome_client' => 'required',
             'fone_client' => 'required',
             'type_client' => 'required',
             'type_partner' => 'required',
-            'cpf_cnpj_client' => 'required|unique:clients,cpf_cnpj_client, ,id,enterprise_id, '.$userLogado->enterprise_id
+            'cpf_cnpj_client' => 'required|unique:clients,cpf_cnpj_client,' . ($clientId ? $clientId->id : ',id,enterprise_id, ' . $userLogado->enterprise_id),
+/*            'cpf_cnpj_client' => 'required|unique:clients,cpf_cnpj_client, ,id,enterprise_id, '.$userLogado->enterprise_id*/
             /*required_if:password,!=,null*/
 
         ];

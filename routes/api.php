@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\EnterpriseController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\NcmController;
 use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -75,5 +76,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('unit-edit/{unit}', [UnitController::class, 'update']);
     Route::put('unit-edit-status/{unit}', [UnitController::class, 'updateStatus']);
     ##
+
+    ## Rota de Unidade NCM
+    Route::get('ncms', [NcmController::class, 'show']);
+    Route::get('ncms-inactive', [NcmController::class, 'showInativo']);
+    Route::post('ncm-create', [NcmController::class, 'store']);
+    Route::put('ncm-edit/{ncm}', [NcmController::class, 'update']);
+    Route::put('ncm-edit-status/{ncm}', [NcmController::class, 'updateStatus']);
+    ##FIM
 });
 

@@ -41,7 +41,7 @@ class EnterpriseRequest extends FormRequest
             'cep_enterprise' => 'required|string',
             'city_enterprise' => 'required|string',
             'state_enterprise' => 'required|string',
-            'validade' => 'required|date_format:Y-m-d,',
+            'validade' => 'required_if:password,!=,null|date_format:Y-m-d,',
 
             'name' => 'required_if:name,!=null|string',
             'email' => 'required_if:email,!=null|email|unique:users,email',
@@ -59,7 +59,7 @@ class EnterpriseRequest extends FormRequest
             'address_enterprise.required' => 'Campo Endereço é obrigatorio',
             'cep_enterprise.required' => 'Campo CEP é obrigatorio',
             'state_enterprise.required' => 'Campo Estado é obrigatorio',
-            'validade.required' => 'Campo Validade é obrigatorio',
+            'validade.required_if' => 'Campo Validade é obrigatorio',
             'validade.date_format' => "Formato invalido",
 
             "name.required" => "Campo Nome é obrigatorio",

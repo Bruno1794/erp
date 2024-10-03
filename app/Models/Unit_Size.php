@@ -15,4 +15,8 @@ class Unit_Size extends Model
         'status_unit',
         'enterprise_id',
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

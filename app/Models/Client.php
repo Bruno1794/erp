@@ -27,4 +27,8 @@ class Client extends Model
         'enterprise_id',
         'date_register',
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

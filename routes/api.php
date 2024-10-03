@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\EnterpriseController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\NcmController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -84,5 +85,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('ncm-edit/{ncm}', [NcmController::class, 'update']);
     Route::put('ncm-edit-status/{ncm}', [NcmController::class, 'updateStatus']);
     ##FIM
+
+    ## Rota para cadastro de produtos
+    Route::get('products', [ProductController::class, 'show']);
+    Route::get('product/{product}', [ProductController::class, 'showProduct']);
+    Route::get('products-inactive', [ProductController::class, 'showInativo']);
+    Route::post('product-create', [ProductController::class, 'store']);
+    Route::put('product-edit/{product}', [ProductController::class, 'update']);
+    Route::put('product-edit-status/{product}', [ProductController::class, 'updateStatus']);
+    #fim
 });
 

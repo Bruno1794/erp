@@ -21,4 +21,8 @@ class Enterprise extends Model
         'state_enterprise',
         'validade',
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

@@ -45,7 +45,6 @@ class NcmController extends Controller
             $ncm = Ncm::create([
                 'name_ncm' => $request->name_ncm,
                 'cod_ncm' => $request->cod_ncm,
-                'status_ncm' => $request->status_ncm,
                 'enterprise_id' => $userLogado->enterprise_id,
             ]);
             DB::commit();

@@ -16,4 +16,12 @@ class Ncm extends Model
         'status_ncm',
         'enterprise_id',
     ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

@@ -164,6 +164,38 @@ class ProductController extends Controller
             ], 400);
         }
     }
+
+    public function updatePrice(ProductRequest $request, Product $product): JsonResponse
+    {
+        $userLogado = Auth::user();
+        DB::beginTransaction();
+        try {
+            if ($userLogado->enterprise_id === $product->enterprise_id) {
+                $product->update([
+                    'price_sale' => $request->price_sale,
+                    'price_cost' => $request->price_cost,
+
+                ]);
+                DB::commit();
+                return response()->json([
+                    'success' => true,
+                    'product' => $product,
+                    'message' => 'Produto Alterado com sucesso'
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Produto nao encontrado'
+                ], 400);
+            }
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => "Falha ao cadastrar produto!"
+            ], 400);
+        }
+    }
 }
 
 

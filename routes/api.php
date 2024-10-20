@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('product-create', [ProductController::class, 'store']);
     Route::put('product-edit/{product}', [ProductController::class, 'update']);
     Route::put('product-edit-status/{product}', [ProductController::class, 'updateStatus']);
+    Route::put('product-edit-price/{product}', [ProductController::class, 'updatePrice']);
     #fim
 });
 

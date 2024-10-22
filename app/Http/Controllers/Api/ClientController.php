@@ -114,6 +114,7 @@ class ClientController extends Controller
                 $client->update([
                     'nome_client' => $request->nome_client,
                     'fone_client' => $request->fone_client,
+                    'type_client' => $request->type_client,
                     'type_partner' => $request->type_partner,
                     'cpf_cnpj_client' => $request->cpf_cnpj_client,
                     'date_birth_client' => $request->date_birth_client,

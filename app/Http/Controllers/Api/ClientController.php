@@ -85,7 +85,7 @@ class ClientController extends Controller
                 'address_client' => $request->address_client,
                 'number_client' => $request->number_client,
                 'city_client' => $request->city_client,
-                'state_client' => $request->state_client,
+
                 'email_client' => $request->email_client,
                 'observation_client' => $request->observation_client,
                 'enterprise_id' => $userLogado->enterprise_id,
@@ -121,7 +121,6 @@ class ClientController extends Controller
                     'address_client' => $request->address_client,
                     'number_client' => $request->number_client,
                     'city_client' => $request->city_client,
-                    'status_client' => $request->status_client,
                     'observation_client' => $request->observation_client,
                 ]);
                 DB::commit();

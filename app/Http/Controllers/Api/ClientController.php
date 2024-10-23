@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientRequest;
 use App\Models\Client;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,6 +72,7 @@ class ClientController extends Controller
 
     public function store(ClientRequest $request): JsonResponse
     {
+
         $userLogado = Auth::user();
         DB::beginTransaction();
         try {
@@ -85,7 +87,6 @@ class ClientController extends Controller
                 'address_client' => $request->address_client,
                 'number_client' => $request->number_client,
                 'city_client' => $request->city_client,
-
                 'email_client' => $request->email_client,
                 'observation_client' => $request->observation_client,
                 'enterprise_id' => $userLogado->enterprise_id,
@@ -105,8 +106,10 @@ class ClientController extends Controller
         }
     }
 
-    public function update(ClientRequest $request, Client $client): JsonResponse
+    public function update(Request $request, Client $client): JsonResponse
     {
+
+
         $userLogado = Auth::user();
         DB::beginTransaction();
         try {

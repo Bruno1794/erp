@@ -13,7 +13,7 @@ class Client extends Model
         'nome_client',
         'fone_client',
         'type_partner',
-        'type_client ',
+        'type_client',
         'cpf_cnpj_client',
         'date_birth_client',
         'rg_ie_client',

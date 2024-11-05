@@ -62,7 +62,7 @@ class UnitController extends Controller
         try {
             $unit = Unit_Size::create([
                 'name_unit' => $request->name_unit,
-                'status_unit' => $request->status_unit,
+
                 'enterprise_id' => $userLogado->enterprise_id
             ]);
 

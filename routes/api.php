@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\NcmController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\FormaPaymentsController;
 use App\Http\Controllers\Api\StockController;
 use Illuminate\Support\Facades\Route;
 
@@ -96,6 +97,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('product-edit-status/{product}', [ProductController::class, 'updateStatus']);
     Route::put('product-edit-price/{product}', [ProductController::class, 'updatePrice']);
     #fim
+
+    ##Rota Formas de Pagamentos
+    Route::get('payments', [FormaPaymentsController::class, 'show']);
+    Route::get('payments-inativo', [FormaPaymentsController::class, 'showInativo']);
+    Route::post('payment-create', [FormaPaymentsController::class, 'store']);
+    Route::put('payment-edit/{payment}', [FormaPaymentsController::class, 'update']);
+    Route::put('payment-status/{payment}', [FormaPaymentsController::class, 'updateStatus']);
+    ##Fim
 
     ## Rota Movimento de estoque
     Route::get('products-manage', [StockController::class, 'showManage']);

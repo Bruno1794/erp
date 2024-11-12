@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\NcmController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\StockController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -95,5 +96,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('product-edit-status/{product}', [ProductController::class, 'updateStatus']);
     Route::put('product-edit-price/{product}', [ProductController::class, 'updatePrice']);
     #fim
+
+    ## Rota Movimento de estoque
+    Route::get('products-manage', [StockController::class, 'showManage']);
+    Route::get('providers-manage', [StockController::class, 'showProvider']);
+    Route::post('manage-stock', [StockController::class, 'store']);
+    Route::get('stocks', [StockController::class, 'show']);
+    ##Fim
 });
 

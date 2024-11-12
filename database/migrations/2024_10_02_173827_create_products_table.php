@@ -21,7 +21,6 @@ return new class extends Migration {
             $table->integer('qtd_stock')->nullable()->default(0);
             $table->integer('stock_min')->nullable()->default(0);
             $table->float('price_sale')->nullable()->default(0);
-            $table->float('price_cost')->nullable()->default(0);
             $table->enum('status_product', ['ATIVO', 'INATIVO'])->default('ATIVO');
             $table->foreignId('enterprise_id')->constrained('enterprises');
 

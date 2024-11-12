@@ -78,7 +78,6 @@ class ProductController extends Controller
                 'unit_id' => $request->unit_id,
                 'stock_min' => $request->stock_min,
                 'price_sale' => $request->price_sale,
-                'price_cost' => $request->price_cost,
                 'enterprise_id' => $userLogado->enterprise_id,
             ]);
             DB::commit();
@@ -111,7 +110,6 @@ class ProductController extends Controller
                     'unit_id' => $request->unit_id,
                     'stock_min' => $request->stock_min,
                     'price_sale' => $request->price_sale,
-                    'price_cost' => $request->price_cost,
                 ]);
                 DB::commit();
                 return response()->json([
@@ -173,7 +171,6 @@ class ProductController extends Controller
             if ($userLogado->enterprise_id === $product->enterprise_id) {
                 $product->update([
                     'price_sale' => $request->price_sale,
-                    'price_cost' => $request->price_cost,
 
                 ]);
                 DB::commit();

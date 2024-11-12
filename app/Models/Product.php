@@ -20,7 +20,6 @@ class Product extends Model
         'qtd_stock',
         'stock_min',
         'price_sale',
-        'price_cost',
         'status_product',
         'enterprise_id',
     ];

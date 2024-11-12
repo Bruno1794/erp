@@ -68,6 +68,7 @@ class FormaPaymentsController extends Controller
 
     public function update(Request $request, Form_Payment $payment): JsonResponse
     {
+
         $userLogado = Auth::user();
         DB::beginTransaction();
         try {

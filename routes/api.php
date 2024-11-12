@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\FormaPaymentsController;
 use App\Http\Controllers\Api\StockController;
+use App\Http\Controllers\Api\BanckController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -96,7 +97,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('product-edit/{product}', [ProductController::class, 'update']);
     Route::put('product-edit-status/{product}', [ProductController::class, 'updateStatus']);
     Route::put('product-edit-price/{product}', [ProductController::class, 'updatePrice']);
-    #fim
+    #FIM
+
+    ##Rota Cadastro de Bancos
+    Route::get('banks', [BanckController::class, 'show']);
+    Route::get('banks-inativo', [BanckController::class, 'showInativo']);
+    Route::post('bank-create', [BanckController::class, 'store']);
+    Route::put('bank-edit/{banck}', [BanckController::class, 'update']);
+    Route::put('bank-status/{banck}', [BanckController::class, 'updateStatus']);
+    ##FIM
 
     ##Rota Formas de Pagamentos
     Route::get('payments', [FormaPaymentsController::class, 'show']);
@@ -111,6 +120,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('providers-manage', [StockController::class, 'showProvider']);
     Route::post('manage-stock', [StockController::class, 'store']);
     Route::get('stocks', [StockController::class, 'show']);
+    ##Fim
+
+    ##Contas a pagar
+
     ##Fim
 });
 

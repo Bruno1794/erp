@@ -11,6 +11,11 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\FormaPaymentsController;
 use App\Http\Controllers\Api\StockController;
 use App\Http\Controllers\Api\BanckController;
+use App\Http\Controllers\Api\DebtController;
+use App\Http\Controllers\Api\OperationController;
+
+
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -109,10 +114,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     ##Rota Formas de Pagamentos
     Route::get('payments', [FormaPaymentsController::class, 'show']);
+    Route::get('payments-internal', [FormaPaymentsController::class, 'showInternal']);
     Route::get('payments-inativo', [FormaPaymentsController::class, 'showInativo']);
     Route::post('payment-create', [FormaPaymentsController::class, 'store']);
     Route::put('payment-edit/{payment}', [FormaPaymentsController::class, 'update']);
     Route::put('payment-status/{payment}', [FormaPaymentsController::class, 'updateStatus']);
+    ##Fim
+
+    ##Operações de estoque
+    Route::get('operations', [OperationController::class, 'show']);
     ##Fim
 
     ## Rota Movimento de estoque
@@ -123,7 +133,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     ##Fim
 
     ##Contas a pagar
-
+    Route::get('debts', [DebtController::class, 'show']);
+    Route::post('debt-create', [DebtController::class, 'store']);
+    Route::put('debt-edit/{debt}', [DebtController::class, 'update']);
+    Route::put('debt-status/{debt}', [DebtController::class, 'updateStatus']);
     ##Fim
 });
 

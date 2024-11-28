@@ -14,6 +14,7 @@ class Form_Payment extends Model
         'name_payments',
         'type_payments',
         'status_payments',
+        'internal_payment',
         'enterprise_id',
     ];
     protected $hidden = [

@@ -18,6 +18,7 @@ class FormaPaymentsController extends Controller
         $userLogado = Auth::user();
         $payments = Form_Payment::where('enterprise_id', $userLogado->enterprise_id)
             ->where('status_payments', 'ATIVO')
+            ->where('internal_payment', 0)
             ->get();
 
         return response()->json([
@@ -25,6 +26,20 @@ class FormaPaymentsController extends Controller
             'payments' => $payments
         ], 200);
     }
+    public function showInternal(): JsonResponse
+    {
+        $userLogado = Auth::user();
+        $payments = Form_Payment::where('enterprise_id', $userLogado->enterprise_id)
+            ->where('status_payments', 'ATIVO')
+            ->where('internal_payment', 1)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'payments' => $payments
+        ], 200);
+    }
+
 
     public function showInativo(): JsonResponse
     {
@@ -47,6 +62,7 @@ class FormaPaymentsController extends Controller
             $payment = Form_Payment::create([
                 'name_payments' => $request->name_payments,
                 'type_payments' => $request->type_payments,
+                'internal_payment' => $request->internal_payment,
                 'enterprise_id' => $userLogado->enterprise_id,
             ]);
             DB::commit();
@@ -75,7 +91,8 @@ class FormaPaymentsController extends Controller
             if ($userLogado->enterprise_id === $payment->enterprise_id) {
                 $payment->update([
                     'name_payments' => $request->name_payments,
-                    'type_payments' => $request->type_payments
+                    'type_payments' => $request->type_payments,
+                    'internal_payment' => $request->internal_payment
                 ]);
                 DB::commit();
                 return response()->json([

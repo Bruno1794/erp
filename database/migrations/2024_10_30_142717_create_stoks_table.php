@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('note_number')->nullable();
             $table->float('price_cost')->nullable()->default(0);
             $table->float('total_value')->nullable()->default(0);
-            $table->boolean('debit')->nullable()->default(0);
             $table->string('motive');
+            $table->foreignId('operation_id')->nullable()->constrained('operations');
             $table->foreignId('provider_id')->nullable()->constrained('clients');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('enterprise_id')->constrained('enterprises');

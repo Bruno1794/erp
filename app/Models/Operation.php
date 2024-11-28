@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Form_Payment extends Model
+class Operation extends Model
 {
     use HasFactory;
 
-    protected $table = 'forms_payments';
+    protected $table = 'operations';
     protected $fillable = [
-        'name_payments',
-        'type_payments',
-        'status_payments',
-        'internal_payment',
+        'operation_name',
+        'description',
+        'type_operation',
+        'create_movement',
         'enterprise_id',
     ];
     protected $hidden = [

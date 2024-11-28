@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->enum('status_payments', ['ATIVO', 'INATIVO'])->default('ATIVO');
             $table->enum('type_payments', ['PIX', 'DEBITO', 'CREDITO', 'DINHEIRO', 'CHEQUE', 'CREDIARIO'])
                 ->default('DINHEIRO');
+            $table->boolean('internal_payment')->default(0);//0 - NAO  1 - SIM
             $table->foreignId('enterprise_id')->constrained('enterprises');
             $table->timestamps();
         });

@@ -23,8 +23,6 @@ return new class extends Migration {
             $table->float('price_sale')->nullable()->default(0);
             $table->enum('status_product', ['ATIVO', 'INATIVO'])->default('ATIVO');
             $table->foreignId('enterprise_id')->constrained('enterprises');
-
-
             $table->timestamps();
         });
     }

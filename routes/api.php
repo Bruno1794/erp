@@ -123,6 +123,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     ##Operações de estoque
     Route::get('operations', [OperationController::class, 'show']);
+    Route::get('operations-exit', [OperationController::class, 'showExit']);
     ##Fim
 
     ## Rota Movimento de estoque

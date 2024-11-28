@@ -12,7 +12,16 @@ class OperationController extends Controller
     //
     public function show(): JsonResponse
     {
-        $operations = Operation::get();
+        $operations = Operation::where('type_operation', 'ENTRADA')->get();
+        return response()->json([
+            'success' => true,
+            'operations' => $operations
+        ]);
+    }
+
+    public function showExit(): JsonResponse
+    {
+        $operations = Operation::where('type_operation', 'SAIDA')->get();
         return response()->json([
             'success' => true,
             'operations' => $operations

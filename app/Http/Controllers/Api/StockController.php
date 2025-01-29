@@ -122,8 +122,8 @@ class StockController extends Controller
                             'number_note' => $stok->note_number,
                             'number_check' => $request->number_check,
                             'banck_transmitter_cheque' => $request->banck_transmitter_cheque,
-                            'forms_payments_id' => $stokvalidate->forms_payments_id,
-                            'banck_id' => $stokvalidate->banck_id,
+                            'forms_payments_id' => $request->forms_payments_id,
+                            'banck_id' => $request->banck_id,
                             'stok_id' => $stok->id,
                             'enterprise_id' => $userLogado->enterprise_id,
                             'user_id' => $userLogado->id,
@@ -177,8 +177,8 @@ class StockController extends Controller
                             'number_note' => $stok->note_number,
                             'number_check' => $request->number_check,
                             'banck_transmitter_cheque' => $request->banck_transmitter_cheque,
-                            'forms_payments_id' => $stokvalidate->forms_payments_id,
-                            'banck_id' => $stokvalidate->banck_id,
+                            'forms_payments_id' => $request->forms_payments_id,
+                            'banck_id' => $request->banck_id,
                             'stok_id' => $stok->id,
                             'enterprise_id' => $userLogado->enterprise_id,
                             'user_id' => $userLogado->id,
@@ -207,8 +207,8 @@ class StockController extends Controller
                         'enterprise_id' => $userLogado->enterprise_id,
                         'stok_id' => $stok->id,
                         'user_id' => $userLogado->id,
-                        'forms_payments_id' => $stokvalidate->forms_payments_id,
-                        'banck_id' => $stokvalidate->banck_id,
+                        'forms_payments_id' => $request->forms_payments_id,
+                        'banck_id' => $request->banck_id,
                     ]);
                 }
 

@@ -70,8 +70,9 @@ class StockController extends Controller
         }
     }
 
-    public function store(Request $request, StokRequest $stokvalidate): JsonResponse
+    public function store(Request $request): JsonResponse
     {
+
         $userLogado = Auth::user();
         DB::beginTransaction();
         try {
@@ -122,8 +123,8 @@ class StockController extends Controller
                             'number_note' => $stok->note_number,
                             'number_check' => $request->number_check,
                             'banck_transmitter_cheque' => $request->banck_transmitter_cheque,
-                            'forms_payments_id' => $stokvalidate->forms_payments_id,
-                            'banck_id' => $stokvalidate->banck_id,
+                            'forms_payments_id' => $request->forms_payments_id,
+                            'banck_id' => $request->banck_id,
                             'stok_id' => $stok->id,
                             'enterprise_id' => $userLogado->enterprise_id,
                             'user_id' => $userLogado->id,
@@ -177,8 +178,8 @@ class StockController extends Controller
                             'number_note' => $stok->note_number,
                             'number_check' => $request->number_check,
                             'banck_transmitter_cheque' => $request->banck_transmitter_cheque,
-                            'forms_payments_id' => $stokvalidate->forms_payments_id,
-                            'banck_id' => $stokvalidate->banck_id,
+                            'forms_payments_id' => $request->forms_payments_id,
+                            'banck_id' => $request->banck_id,
                             'stok_id' => $stok->id,
                             'enterprise_id' => $userLogado->enterprise_id,
                             'user_id' => $userLogado->id,
@@ -193,25 +194,23 @@ class StockController extends Controller
                     }
                     ##FIM
                 }else{
-                    if($operation->create_movement === 'CP') {
-                        Debt::create([
-                            'name_debit' => $stok->type_moviment . " DE ESTOQUE | REF:" . $stok->id,
-                            'number_note' => $stok->note_number,
-                            'number_check' => $request->number_check,
-                            'banck_transmitter_cheque' => $request->banck_transmitter_cheque,
-                            'value_total_debit' => $stok->total_value,
-                            'parcel' => 'AVISTA',
-                            'date_venciment' => Carbon::now(),
-                            'date_payment' => $request->date_payment,
-                            'value_paid' => $request->value_paid,
-                            'description' => $request->description,
-                            'enterprise_id' => $userLogado->enterprise_id,
-                            'stok_id' => $stok->id,
-                            'user_id' => $userLogado->id,
-                            'forms_payments_id' => $stokvalidate->forms_payments_id,
-                            'banck_id' => $stokvalidate->banck_id,
-                        ]);
-                    }
+                    Debt::create([
+                        'name_debit' => $stok->type_moviment . " DE ESTOQUE | REF:" . $stok->id,
+                        'number_note' => $stok->note_number,
+                        'number_check' => $request->number_check,
+                        'banck_transmitter_cheque' => $request->banck_transmitter_cheque,
+                        'value_total_debit' => $stok->total_value,
+                        'parcel' => 'AVISTA',
+                        'date_venciment' => Carbon::now(),
+                        'date_payment' => $request->date_payment,
+                        'value_paid' => $request->value_paid,
+                        'description' => $request->description,
+                        'enterprise_id' => $userLogado->enterprise_id,
+                        'stok_id' => $stok->id,
+                        'user_id' => $userLogado->id,
+                        'forms_payments_id' => $request->forms_payments_id,
+                        'banck_id' => $request->banck_id,
+                    ]);
                 }
 
                 switch ($stok->type_moviment) {

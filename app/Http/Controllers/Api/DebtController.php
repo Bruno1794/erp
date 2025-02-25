@@ -18,6 +18,8 @@ class DebtController extends Controller
     public function show(Request $request): JsonResponse
     {
         $userLogado = Auth::user();
+        $hoje = Carbon::today();
+        $dataLimite = $hoje->copy()->addDays(30);
 
         $debts = $request->dataInicio && $request->dataFim ?
             Debt::with('user')->with('forms_payments')->with('provider')->with('banck')
@@ -31,7 +33,7 @@ class DebtController extends Controller
 
             Debt::with('user')->with('forms_payments')->with('provider')->with('banck')
                 ->where('enterprise_id', $userLogado->enterprise_id)
-                ->whereMonth('date_venciment', $request->mes ? $request->mes : Carbon::now()->month)
+                ->whereBetween('date_venciment', [$hoje, $dataLimite])
                 ->whereYear('date_venciment', Carbon::now()->year)
                 ->where('type_debit', 'PENDENTE')
                 ->where('status_debit', 'ATIVO')
